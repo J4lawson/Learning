@@ -1,0 +1,274 @@
+#############################################################################################################################
+##################################################### (Hackerrank) Angry Professor
+#############################################################################################################################
+
+N = 0
+K = 0
+a = []
+n = []
+k = []
+i = 0
+count = 0
+T = int(input())                                   # Number of Tests
+for i in range(0,T):                               # Loop T times test data
+    N,K = input().split()                           
+    N = int(N)                                     # N number of students
+    n.append(N)                                    # n-set for number of students in the class
+    K = int(K)                                     # K number of students needed for class to start
+    k.append(K)                                    # k-set for number of students needed for class to start
+    a.append(input().split())                      # a-set[] for times the students arrive
+    i = i + 1                      
+i = 0                                              # Reset i
+for i in range(0,T):
+    total = n[i]                                   # total of students in (i) case
+    min = k[i]                                     # min required for (i) class to start
+    temp = list(a[i])                              # times students arrived for (i) class
+    for j in range(0,total):
+        t = temp[j]
+        t = int(t)
+        if t <= 0:
+            count = count + 1
+    if count >= min:
+        print("NO")
+    else:
+        print("YES")
+    count = 0
+    i = i + 1
+
+#############################################################################################################################
+##############################(Hackerrank) Chocolate Feast
+#############################################################################################################################
+
+intialN = 0                  # Starting amount of money.
+valueC = 0                   # Cost of Chocolate.
+M = 0                        # For every (x)M = 1 free C.
+totalC = 0                   # Number of Chocolate you walk out with.
+testa = []
+T = int(input())             # Number of Tests.
+
+for i in range(0,T):
+    p = str(input())
+    testa.append(p)
+    i = i + 1
+i = 0
+for i in range(0,T):
+    totalC = 0
+    freec = 0
+    test = testa[i]
+    test = test.split()
+    money = int(test[0])
+    cost = int(test[1])
+    free = int(test[2])
+    if money != 0:
+        bought_chocolate = int(money/cost)
+    total_chocolate = bought_chocolate + (bought_chocolate - 1) / (free - 1)
+    total_chocolate = int(total_chocolate)
+    print(total_chocolate)
+
+#############################################################################################################################
+##############################(Hackerrank) Cut the Sticks
+#############################################################################################################################
+
+nlist = []
+
+N = int(input())                                     #Get number of sticks
+n = input().split()                                  #Get stick length string
+nlist = [int(x) for x in n]                          #Convert length string to individual lengths
+nlist.sort()                                         #Sort lowest first
+def remove_values_from_list(the_list, val):          #Remove 0's from list
+     while val in the_list:
+         the_list.remove(val)
+T = 0
+nN = N
+sub = nlist[0]
+print(N)
+tempa = nlist[:]
+while T != 1:                                        #loop until done
+
+    for i in range(0,nN):
+        s = tempa[i]
+        if s != 0:
+            st = (s - sub)
+            tempa[i] = st
+    remove_values_from_list(tempa, 0)
+    sub = tempa[0]
+    nN = len(tempa)
+    print (nN)
+    if nN == 1:
+        T = 1
+
+#############################################################################################################################
+##############################(Hackerrank) Find Digits
+#############################################################################################################################
+
+num = []
+T = int(input())                                         # T is the number of test cases
+for i in range(0,T):                                     # K are the numbers to divide
+    p = input()
+    num.append(p)
+count = 0
+for i in range(0,T):
+    number = num[i]
+    l = len(number)
+#    l = (l - 1)
+    n = list(number)
+    number = int(number)
+    numbers = [ int(x) for x in n ]
+
+    for j in range(0,l):
+        if numbers[j] == 0:
+            continue 
+        if number % numbers[j] == 0:
+            count = count + 1
+        if j == l:
+            break
+        j = j + 1
+    print(count)
+    count = 0
+    j = 0
+    
+#############################################################################################################################
+##############################(Hackerrank) Halloween Party
+#############################################################################################################################
+
+tcuts = []
+T = int(input())                                         # T is the number of test cases
+for i in range(0,T):                                     # K is the number of cuts Alex has to make in the chocolate for Silvia
+    p = int(input())
+    tcuts.append(p)
+
+for i in range(0,T):
+    cuts = tcuts[i]
+    pieces = 0
+    if cuts %2 == 0:                                     # For Even numbered cuts
+        pieces = (cuts / 2)
+        pieces = (pieces * pieces)
+        pieces = int(pieces)
+        print(pieces)
+    else:                                                # For Odd numbered cuts
+        cuts = (cuts - 1)
+        a = (cuts / 2)
+        b = (a + 1)
+        pieces = (a * b)
+        pieces = int(pieces)
+        print(pieces)
+        
+    
+#############################################################################################################################
+##############################(Hackerrank) Lonely Integer
+#############################################################################################################################
+
+n = int(input())
+a = str(input())
+A = a.split()
+for i in range(0,n):
+    x = A[i]
+#    x = float(x)
+#    x = int(x)
+    t = A.count(x)
+    if i != n:
+        i = i + 1
+    if t == 1:
+        print(x)
+        break
+        
+#############################################################################################################################
+##############################(Hackerrank) Palindrom
+#############################################################################################################################
+
+                                                                # 1<=T<=10
+                                                                # 1<=length of string<=10^4
+char = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+para = []
+strings = []
+                                                               #(T) number of tests
+T = int(input())
+for _ in range(0,T):
+    para.append(str(input()))
+for o in range(0,T):
+        s = para[o]                                            #string "o"
+        s = list(s)
+        r = list(reversed(s))#reverse string "o"
+        l = len(s)
+        l = int(l)
+        mid = 0                                                #midpoint 
+        ans = 0                                                #total number of iterations it will take to make the string a palindrom
+        i = 0                                                  #reset i, it broke once.
+        if l %2 == 0:                                          #is length of string even?
+            mid = int(l/2)
+            mid = mid 
+        else:                                                  #if length != even set a midpoint
+            m = l
+            m = m - 1
+            mid = int(m/2)
+            mid = mid + 1
+            mid = int(mid)
+        for i in range(0,mid):                                 #find the diff between mirrored string positions
+            if r[i] != s[i]:
+                rsc = char.index(r[i])
+                sc = char.index(s[i])
+                dif = abs(rsc-sc)
+                ans = ans + dif 
+                ans = abs(ans)
+        print(ans)
+#############################################################################################################################
+##############################(Hackerrank) Service Lane
+#############################################################################################################################
+
+                                                                                             # vehicle sizes are width = 1, 2, 3
+hwy = []
+test = []
+                                                                                             # pull data for tests
+N,T = (input().split()) #(a)= segments of service lanes, (b)= number of test iterations 
+N = int(N)
+T = int(T)
+h = input()
+
+hwy = h.split()
+#hwy.append(list(input().split()))
+
+for _ in range(0,T):
+   test.append(str(input()))
+                                                                                             #Start the test
+for p in range(0,T):
+    z = test[p]
+    i,j = z.split()
+    i = int(i)
+    j = int(j) + 1
+    c = 4
+    k = 0
+    for k in range(i,j):
+        a = hwy[k]
+        a = float(a)
+        a = int(a)
+        if c >= a:
+            c = a 
+    print(c)
+  
+  
+#############################################################################################################################
+##############################(Reddit) More true Random Number Generator
+#############################################################################################################################
+
+  import random
+
+a = []
+b = []
+i = 0
+j = 0
+loop = 0
+loopb = 0
+cloop = 0
+while i != 1:
+    x = random.randint(0, 10000)
+    if x in a:
+        print("It took ",loop," tries before getting matching random numbers.")
+        print(" ")
+        print("Your random number is")
+        print(x)
+        i = 1
+    a.append(x)
+    loop = loop + 1
+    if loop == 100000:
+        break
+    print("loop a",loop)
